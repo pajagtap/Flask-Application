@@ -17,9 +17,9 @@ class Book(Resource):
 		else:
 			data = GetData.getFilteredData('././books-2.csv',request_data)
 			if type(data)==str:
-				return {"message":data}
+				return {"message":data},404	# 404-Not Found response when books are not found
 			else:
-				return {"books":data}
+				return {"books":data},200	# 200 Successful response
 
 if __name__=="__main__":
 	# add the resource to the api and run the app
