@@ -1,9 +1,13 @@
 aniso8601==9.0.1
+certifi==2021.5.30
+chardet==4.0.0
 click==8.0.1
 colorama==0.4.4
 Flask==2.0.1
 Flask-JWT==0.3.2
 Flask-RESTful==0.3.9
+Flask-Testing==0.8.1
+idna==2.10
 importlib-metadata==4.5.0
 itsdangerous==2.0.1
 Jinja2==3.0.1
@@ -13,7 +17,9 @@ pandas==1.2.5
 PyJWT==1.4.2
 python-dateutil==2.8.1
 pytz==2021.1
+requests==2.25.1
 six==1.16.0
 typing-extensions==3.10.0.0
+urllib3==1.26.6
 Werkzeug==2.0.1
 zipp==3.4.1
