@@ -1,5 +1,6 @@
 import unittest
 import requests
+import random
 
 from flask import Flask
 from flask_testing import TestCase
@@ -7,7 +8,6 @@ from flask_testing import TestCase
 class SampleTest(unittest.TestCase):
 
 	BASE_URL = "http://192.168.0.188:5000"
-
 	BOOKS_URL = "{}/books".format(BASE_URL)
 
 	# test case to check app creation using configured items
@@ -26,19 +26,14 @@ class SampleTest(unittest.TestCase):
 		self.assertEqual(len(r.json()["books"]), 3)
 		self.assertNotEqual(len(r.json()["books"]), 5)
 
-	# test case to for failure checking
-	def test_Failure(self):
-		r = requests.get(self.BOOKS_URL, json={"rows":2})
-		# data = len(r.json()["books"])
-		self.assertEqual(r.status_code, 200)
-		self.assertEqual(len(r.json()["books"]), 3)
-
-
+	# test case to get successul response with filtered list of books
 	def test_GetFilteredBooks(self):
 		r = requests.get(self.BOOKS_URL, json={"title":"Friction, Volume 7: Best Gay Erotic Fiction"})
 		self.assertEqual(r.status_code, 200)
-		self.assertEqual(len(r.json()["books"]), 1)	
+		self.assertEqual(len(r.json()["books"]), 1)
+		self.assertEqual(r.json()["books"][0]["title"], "Friction, Volume 7: Best Gay Erotic Fiction")
 
+	# test case to check for BADRequest parameters passed
 	def test_BADRequest(self):
 		r = requests.get(self.BOOKS_URL, json={"title":"Some Random Title"})
 		# if r.json()["books"]==None:
